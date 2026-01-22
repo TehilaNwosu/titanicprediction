@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Machine Learning model to predict Titanic passenger survival">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Titanic Survival Prediction</title>
+</head>
+<body>
+    <main class="container">
+        <header class="app-header">
+            <h1>⚓ Titanic Survival Prediction</h1>
+            <p class="subtitle">Enter passenger details to estimate survival probability based on historical data.</p>
+        </header>
+        
+        {% if error %}
+            <div class="error" role="alert" aria-live="assertive">
+                <strong>Error:</strong> {{ error }}
+            </div>
+        {% endif %}
+        
+        <form method="POST" class="prediction-form">
+            {% if features %}
+                <div class="form-grid">
+                    {% for feature in features %}
+                        <div class="form-group">
+                            
+                            {% if feature == 'Sex' %}
+                                <label for="{{ feature }}">{{ feature }}:</label>
+                                <select id="{{ feature }}" name="{{ feature }}" required class="form-control">
+                                    <option value="">-- Select --</option>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
+
+                            {% elif feature == 'Embarked' %}
+                                
+                                
+                                <label for="{{ feature }}">{{ feature }} (Port of Origin):</label>
+                                <select id="{{ feature }}" name="{{ feature }}" required class="form-control">
+                                    <option value="">-- Select --</option>
+                                    <option value="1">Cherbourg (C)</option>
+                                    <option value="2">Queenstown (Q)</option>
+                                    <option value="3">Southampton (S)</option>
+                                </select>
+
+                            {% elif feature == 'Pclass' %}
+                                
+                                
+                                <label for="{{ feature }}">Passenger Class:</label>
+                                <select id="{{ feature }}" name="{{ feature }}" required class="form-control">
+                                    <option value="">-- Select --</option>
+                                    <option value="1">1st Class (Upper Deck)</option>
+                                    <option value="2">2nd Class (Middle Deck)</option>
+                                    <option value="3">3rd Class (Lower Deck)</option>
+                                </select>
+
+                            {% else %}
+                                <label for="{{ feature }}">{{ feature }}:</label>
+                                <input 
+                                    type="number" 
+                                    id="{{ feature }}" 
+                                    name="{{ feature }}" 
+                                    step="any" 
+                                    required 
+                                    class="form-control"
+                                    placeholder="Enter value..."
+                                >
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="warning" role="alert">
+                    <strong>Note:</strong> Training data not available. Please ensure <code>train_model.py</code> has been executed.
+                </div>
+            {% endif %}
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Predict Survival</button>
+            </div>
+        </form>
+        
+        {% if probability is not none %}
+            <section 
+                class="prediction-result {% if prediction == 1 %}survived{% else %}not-survived{% endif %}"
+                aria-live="polite"
+            >
+                <h2>{% if prediction == 1 %}Likely Survived{% else %}Unlikely Survived{% endif %}</h2>
+                
+                <div class="probability-display">
+                    <span class="prob-value">{{ "%.1f"|format(probability) }}%</span>
+                    <span class="prob-label">Confidence</span>
+                </div>
+                
+                <div class="status-message">
+                    {% if prediction == 1 %}
+                        <p>Based on the model, this passenger likely survived the Titanic disaster.</p>
+                    {% else %}
+                        <p>Based on the model, this passenger likely did not survive the Titanic disaster.</p>
+                    {% endif %}
+                </div>
+            </section>
+        {% endif %}
+    </main>
+</body>
+</html>

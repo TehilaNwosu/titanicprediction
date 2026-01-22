@@ -1,0 +1,6 @@
+1. Name: Nwosu Tehila
+2. Matric Number: 22cg031892
+3. Machine Learning Algorithm Used: Random Forest
+4. Model persistence method used (e.g., Joblib or Pickle): Joblib
+5. Live URL of the hosted application: https://titanic-survival-kp4yfcwdo-oseaghes-projects.vercel.app/
+6. GitHub repository link: https://github.com/TehilaNwosu/titanicprediction

@@ -1,0 +1,195 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Heading */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    color: #d63447;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.8em;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Label */
+label {
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 1em;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="number"],
+select {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: #1e3c72;
+    box-shadow: 0 0 8px rgba(30, 60, 114, 0.3);
+    background-color: #f8f9ff;
+}
+
+/* Button */
+button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(30, 60, 114, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Prediction Result */
+.prediction-result {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+.prediction-result h2 {
+    color: white;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.probability {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.status {
+    font-size: 1.2em;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.survived {
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.survived h2,
+.survived .status {
+    color: #1a5f3e;
+}
+
+.not-survived h2,
+.not-survived .status {
+    color: #6b1a1a;
+}
+
+/* Error and Warning Messages */
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    .probability {
+        font-size: 2em;
+    }
+}
